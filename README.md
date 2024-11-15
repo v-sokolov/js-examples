@@ -1,0 +1,4 @@
+# JS-examples
+
+## Patterns
+### - Strategy
