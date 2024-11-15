@@ -1,4 +1,4 @@
-import { StrategyContext, FixedDiscount, PercentageDiscount } from './'
+import {StrategyContext, FixedDiscount, PercentageDiscount} from './'
 
 const RANDOM_FIXED_DISCOUNT = 500;
 const RANDOM_PERCENTAGE_DISCOUNT = 15;
@@ -9,9 +9,11 @@ const percentage = new PercentageDiscount(RANDOM_PERCENTAGE_DISCOUNT);
 
 export const calculateFinalPrice = (price: number, strategy: FixedDiscount | PercentageDiscount): number => {
   const context = new StrategyContext(strategy);
-  const result = context.calculateFinalPrice(price);
-  console.log({strategyName: strategy.name,  price, result});
-  return result;
+
+  const resultWithDiscount = context.calculateFinalPrice(price);
+
+  console.log({price, strategyName: strategy.name, result: resultWithDiscount});
+  return resultWithDiscount;
 };
 
 calculateFinalPrice(RANDOM_PRICE, fixed);
