@@ -7,7 +7,7 @@ export class BonusDiscount implements IDiscountStrategy {
   };
 
   calculateDiscount(price: number): number {
-    return price - (price * this.bonus) / 100;
+    return price - ((price * this.bonus) / 100) - this.bonus;
 
   }
 }

@@ -18,7 +18,9 @@ export const clientApp = (price: number, order: IOrder): number => {
       );
       break;
     default:
-      DiscountContext.strategy = new FixedDiscount(0);
+      console.log('Unknown discount type. Using default strategy with 0 discount');
+      order.discount = 0;
+      DiscountContext.strategy = new FixedDiscount(order.discount);
       break;
   }
 
@@ -26,6 +28,7 @@ export const clientApp = (price: number, order: IOrder): number => {
 
   console.log({
     currentStrategy: DiscountContext.strategy.name,
+    discount: order.discount,
     withoutDiscount: price,
     withDiscount: priceWithDiscount,
   });

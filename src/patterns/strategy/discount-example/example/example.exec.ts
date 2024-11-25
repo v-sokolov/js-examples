@@ -17,7 +17,8 @@ clientApp(RANDOM_PRICE, {
 });
 
 // Calculating a final price using a bonus discount
-// (every 3rd order gets dynamic percentage discount based on the order's history length, others - the original price)
+// Every 3rd order gets a discount based on: dynamic percentage plus fixed amount - both equal to history length.
+// Non-multiple of 3 orders get the original price.
 clientApp(RANDOM_PRICE, {
   price: RANDOM_PRICE,
   discount: 0,
@@ -32,7 +33,6 @@ clientApp(RANDOM_PRICE, {
 });
 
 // Calculating a final price using a bonus discount
-// (every 3rd order gets dynamic percentage discount based on the order's history length, others - the original price)
 clientApp(RANDOM_PRICE, {
   price: RANDOM_PRICE,
   discount: 0,
