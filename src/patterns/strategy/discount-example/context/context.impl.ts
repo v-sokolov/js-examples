@@ -1,13 +1,14 @@
 import {FixedDiscount, IDiscountStrategy} from "../strategies";
 import {IStrategyContext} from "./interfaces";
+import {OrderHistory} from "./order-history.impl";
 
 export class StrategyContext implements IStrategyContext {
-  private readonly _orderHistory: Array<unknown>;
+  private _orderHistory: OrderHistory;
 
   constructor() {
     // Initial default
     this._strategy = new FixedDiscount(0);
-    this._orderHistory = [];
+    this._orderHistory = new OrderHistory();
   }
 
   private _strategy: IDiscountStrategy;
@@ -20,24 +21,8 @@ export class StrategyContext implements IStrategyContext {
     this._strategy = strategy;
   }
 
-  get orderHistory(): Array<unknown> {
-    return this._orderHistory;
-  }
-
-  set orderHistory(orderDetails: unknown) {
-    this._orderHistory.push(orderDetails);
-  }
-
-  get isNextOrderMultipleOfThree(): boolean {
-    return (this.orderHistory.length + 1) % 3 === 0;
-  }
-
-  get bonusPercentage(): number {
-    return this.orderHistory.length;
-  }
-
   calculateFinalPrice(price: number): number {
-    this.orderHistory = price;
+    this._orderHistory.addToHistory(price);
 
     return this._strategy.calculateDiscount(price);
   }
