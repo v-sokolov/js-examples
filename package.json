@@ -7,6 +7,7 @@
     "typescript": "^5.6.3"
   },
   "scripts": {
-    "run-strategy-pattern-example": "ts-node ./src/patterns/strategy/discount-example/example/example.exec.ts"
+    "run-strategy-pattern-example": "ts-node ./src/patterns/strategy/discount-example/example/example.exec.ts",
+    "run-flyweight-pattern-example": "ts-node ./src/patterns/flyweight/avatar-example/example/example.exec.ts"
   }
 }

@@ -3,12 +3,12 @@ import {IStrategyContext} from "./interfaces";
 import {OrderHistory} from "./order-history.impl";
 
 export class StrategyContext implements IStrategyContext {
-  private _orderHistory: OrderHistory;
+  orderHistory: OrderHistory;
 
   constructor() {
     // Initial default
     this._strategy = new FixedDiscount(0);
-    this._orderHistory = new OrderHistory();
+    this.orderHistory = new OrderHistory();
   }
 
   private _strategy: IDiscountStrategy;
@@ -22,7 +22,7 @@ export class StrategyContext implements IStrategyContext {
   }
 
   calculateFinalPrice(price: number): number {
-    this._orderHistory.addToHistory(price);
+    this.orderHistory.addToHistory(price);
 
     return this._strategy.calculateDiscount(price);
   }
