@@ -1,4 +1,4 @@
-import {IFlyweight} from "./interfaces";
+import {IFlyweight} from "./";
 
 export class Flyweight<F> implements IFlyweight<F> {
   sharedState: F;

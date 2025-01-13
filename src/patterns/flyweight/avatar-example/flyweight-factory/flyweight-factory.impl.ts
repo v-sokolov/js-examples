@@ -1,5 +1,5 @@
-import {IFlyweightFactory} from "./interfaces";
-import {Flyweight} from "../flyweight/flyweight.impl";
+import {IFlyweightFactory} from "./";
+import {Flyweight} from "../flyweight/";
 
 export class FlyweightFactory<K, S, F> implements IFlyweightFactory<K, S, F> {
   flyweights: Map<K, F> = new Map<K, F>();
@@ -21,5 +21,9 @@ export class FlyweightFactory<K, S, F> implements IFlyweightFactory<K, S, F> {
     }
 
     return this.flyweights.get(key) as F;
+  }
+
+  getFlyweights() {
+    return this.flyweights;
   }
 }

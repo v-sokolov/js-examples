@@ -1,6 +1,5 @@
-import {FlyweightFactory} from "../flyweight-factory/flyweight-factory.impl";
-import {IAvatar, IBaseContact, IContact} from "./interfaces";
-import {generateIntrinsicState, generateKey} from "./utils";
+import {FlyweightFactory} from "../flyweight-factory";
+import {generateIntrinsicState, generateKey, IAvatar, IBaseContact, IContact} from "./";
 
 export class ContactsBook {
   contacts: Map<IContact['name'] | IContact['phone'], IContact> = new Map();
@@ -22,6 +21,16 @@ export class ContactsBook {
 
   public listContacts() {
     return Array.from(this.contacts.values());
+  }
+
+  public listAvatars() {
+    return Array.from(this.avatarsCache.getFlyweights().values());
+  }
+
+  public printCurrentMetrics() {
+    console.log('Unique Avatars Quantity:', this.listAvatars().length);
+    console.log('Existed Avatars:', this.listAvatars());
+    console.log('Contacts:', this.listContacts());
   }
 
   private getContactAvatar(contact: IBaseContact): IAvatar {

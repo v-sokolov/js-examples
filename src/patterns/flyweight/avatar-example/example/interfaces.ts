@@ -1,13 +1,13 @@
-export interface IAvatar {
-  initialLetter: string;
-  color: string;
-}
-
 export interface IBaseContact {
   name: string;
-  phone: string
+  phone: string;
 }
 
 export interface IContact extends IBaseContact {
-  avatar: IAvatar
+  avatar: IAvatar;
+}
+
+export interface IAvatar {
+  initialLetter: string;
+  color: string;
 }

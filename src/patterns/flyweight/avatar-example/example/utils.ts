@@ -1,5 +1,4 @@
-import {IAvatar, IBaseContact} from "./interfaces";
-import {ALPHABETIC_COLORS_MAP, AlphabetLetter} from "../flyweight/constants";
+import {ALPHABETIC_COLORS_MAP, AlphabetLetter, IAvatar, IBaseContact} from "./";
 
 export const generateKey = (sharedState: IBaseContact): string => {
   return sharedState.name.charAt(0);
