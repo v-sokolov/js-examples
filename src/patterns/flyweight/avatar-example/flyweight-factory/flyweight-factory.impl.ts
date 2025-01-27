@@ -15,12 +15,12 @@ export class FlyweightFactory<K, S, F> implements IFlyweightFactory<K, S, F> {
     const key = this.generateKey(sharedState);
 
     if (!this.flyweights.has(key)) {
-      const newFlyweight = new Flyweight<F>(this.generateIntrinsicState(sharedState)).sharedState as F;
+      const newFlyweight = new Flyweight<F>(this.generateIntrinsicState(sharedState)).sharedState;
 
       this.flyweights.set(key, newFlyweight);
     }
 
-    return this.flyweights.get(key) as F;
+    return this.flyweights.get(key)!;
   }
 
   getFlyweights() {
