@@ -4,6 +4,6 @@ export type ICustomErrorType = 'server' | 'validation' | undefined;
 
 export type IErrorObject = IServerError | IValidationError | IUnknownError;
 
-export interface ErrorParser {
+export interface IErrorParser {
   parse(error: IErrorObject): string;
 }

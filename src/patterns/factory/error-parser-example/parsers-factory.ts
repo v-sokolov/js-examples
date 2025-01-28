@@ -1,8 +1,8 @@
-import {ErrorParser, ICustomErrorType} from "./interfaces";
+import {ICustomErrorType, IErrorParser} from "./interfaces";
 import {ServerErrorParser, UnknownErrorParser, ValidationErrorParser} from "./parsers";
 
 export class ErrorParsersFactory {
-  static createParser(type: ICustomErrorType): ErrorParser {
+  static createParser(type: ICustomErrorType): IErrorParser {
     switch (type) {
       case "server":
         return new ServerErrorParser();
