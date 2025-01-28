@@ -1,4 +1,4 @@
-import {ErrorParser, ICustomErrorType} from "../interfaces";
+import {ICustomErrorType, IErrorParser} from "../interfaces";
 
 export interface IServerError {
   type: ICustomErrorType;
@@ -7,7 +7,7 @@ export interface IServerError {
   details: string[];
 }
 
-export class ServerErrorParser implements ErrorParser {
+export class ServerErrorParser implements IErrorParser {
   parse(error: IServerError): string {
     return `Server Error: ${error.code} - ${error.details.join(', ') ?? 'unknown'}`;
   }
