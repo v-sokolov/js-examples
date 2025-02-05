@@ -16,7 +16,7 @@ export const clientApp = (order: IOrder): number => {
       break;
     case "BonusDiscount":
       DiscountContext.strategy = new BonusDiscount(
-        DiscountContext.isNextOrderMultipleOfThree ? DiscountContext.bonusPercentage : 0
+        DiscountContext.orderHistory.isNextOrderMultipleOfThree ? DiscountContext.orderHistory.bonusPercentage : 0
       );
       break;
     default:
