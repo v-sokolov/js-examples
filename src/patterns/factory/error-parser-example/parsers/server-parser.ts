@@ -1,15 +1,16 @@
-import {ICustomErrorType} from "../parsers-factory";
-import {IErrorParser, IParsedError} from "../example/interfaces";
+import {IError, IErrorParser, IParsedError} from "../example/interfaces";
 
-export interface IServerError {
-  type: ICustomErrorType;
+export type IServerErrorType = 'server';
+
+interface IServerError extends IError {
+  type: IServerErrorType;
   message: string;
   code: number;
   details: string[];
 }
 
-export class ServerErrorParser implements IErrorParser {
-  parse(error: IServerError): IParsedError {
+export class ServerErrorParser implements IErrorParser<IServerErrorType> {
+  parse(error: IServerError): IParsedError<IServerErrorType> {
     return {
       ...error,
       type: 'server',

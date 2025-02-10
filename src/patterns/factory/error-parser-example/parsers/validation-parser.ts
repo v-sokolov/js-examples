@@ -1,15 +1,16 @@
-import {ICustomErrorType} from "../parsers-factory";
-import {IErrorParser, IParsedError} from "../example/interfaces";
+import {IError, IErrorParser, IParsedError} from "../example/interfaces";
 
-export interface IValidationError {
-  type: ICustomErrorType;
+export type IValidationErrorType = 'validation';
+
+interface IValidationError extends IError {
+  type: IValidationErrorType;
   message: string;
   fieldName: string;
   fieldMessage: string;
 }
 
-export class ValidationErrorParser implements IErrorParser {
-  parse(error: IValidationError): IParsedError {
+export class ValidationErrorParser implements IErrorParser<IValidationErrorType> {
+  parse(error: IValidationError): IParsedError<IValidationErrorType> {
     return {
       ...error,
       type: 'validation',

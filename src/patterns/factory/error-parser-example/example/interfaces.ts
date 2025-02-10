@@ -1,10 +1,10 @@
 export type IError = Record<'message' | string, unknown>;
 
-export interface IParsedError extends IError {
-  type: string;
+export interface IParsedError<T> extends IError {
+  type: T;
   formattedErrorMessage: string;
 }
 
-export interface IErrorParser {
-  parse(error: unknown): IParsedError;
+export interface IErrorParser<T> {
+  parse(error: IError): IParsedError<T>;
 }

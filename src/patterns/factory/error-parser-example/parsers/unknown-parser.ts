@@ -1,13 +1,14 @@
-import {ICustomErrorType} from "../parsers-factory";
-import {IErrorParser, IParsedError} from "../example/interfaces";
+import {IError, IErrorParser, IParsedError} from "../example/interfaces";
 
-export interface IUnknownError {
-  type?: ICustomErrorType;
+export type IUnknownErrorType = 'unknown';
+
+interface IUnknownError extends IError {
+  type: IUnknownErrorType;
   message: string;
 }
 
-export class UnknownErrorParser implements IErrorParser {
-  parse(error: IUnknownError): IParsedError {
+export class UnknownErrorParser implements IErrorParser<IUnknownErrorType> {
+  parse(error: IUnknownError): IParsedError<IUnknownErrorType> {
     return {
       ...error,
       type: 'unknown',

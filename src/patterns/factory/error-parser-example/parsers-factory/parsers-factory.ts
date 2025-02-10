@@ -1,9 +1,9 @@
-import {ICustomErrorType} from "./interfaces";
 import {ServerErrorParser, UnknownErrorParser, ValidationErrorParser} from "../parsers";
 import {IErrorParser} from "../example/interfaces";
+import {IParsersFactoryErrorType} from "./interfaces";
 
-function getErrorType(error: unknown): ICustomErrorType {
-  let errorType: ICustomErrorType = 'unknown';
+function getErrorType(error: unknown): IParsersFactoryErrorType {
+  let errorType: IParsersFactoryErrorType = 'unknown';
 
   if (error && typeof error === 'object') {
     if ('code' in error && 'details' in error) {
@@ -19,8 +19,8 @@ function getErrorType(error: unknown): ICustomErrorType {
 }
 
 export class ErrorParsersFactory {
-  static createParser(error: unknown): IErrorParser {
-    const errorType: ICustomErrorType = getErrorType(error);
+  static createParser(error: unknown): IErrorParser<IParsersFactoryErrorType> {
+    const errorType: IParsersFactoryErrorType = getErrorType(error);
 
     switch (errorType) {
       case "server":
