@@ -1,12 +1,17 @@
-import {IErrorParser} from "../interfaces";
+import {ICustomErrorType} from "../parsers-factory";
+import {IErrorParser, IParsedError} from "../example/interfaces";
 
 export interface IUnknownError {
-  type?: undefined;
+  type?: ICustomErrorType;
   message: string;
 }
 
 export class UnknownErrorParser implements IErrorParser {
-  parse(error: IUnknownError): string {
-    return `An unknown error occurred: ${error.message}`;
+  parse(error: IUnknownError): IParsedError {
+    return {
+      ...error,
+      type: 'unknown',
+      formattedErrorMessage: `An unknown error occurred: ${error.message}`,
+    };
   }
 }

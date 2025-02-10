@@ -1,4 +1,5 @@
-import {ICustomErrorType, IErrorParser} from "../interfaces";
+import {ICustomErrorType} from "../parsers-factory";
+import {IErrorParser, IParsedError} from "../example/interfaces";
 
 export interface IServerError {
   type: ICustomErrorType;
@@ -8,7 +9,11 @@ export interface IServerError {
 }
 
 export class ServerErrorParser implements IErrorParser {
-  parse(error: IServerError): string {
-    return `Server Error: ${error.code} - ${error.details.join(', ') ?? 'unknown'}`;
+  parse(error: IServerError): IParsedError {
+    return {
+      ...error,
+      type: 'server',
+      formattedErrorMessage: `Server Error: ${error.code} - ${error.details.join(', ') ?? 'unknown'}`
+    };
   }
 }

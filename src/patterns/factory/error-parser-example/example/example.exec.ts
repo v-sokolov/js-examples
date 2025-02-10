@@ -1,20 +1,26 @@
-import {ITableError} from "./interfaces";
 import {RANDOM_ERRORS_MOCK} from "./example.mocks";
-import {IErrorParser} from "../interfaces";
+import {IError, IErrorParser, IParsedError} from "./interfaces";
 import {ErrorParsersFactory} from "../parsers-factory";
 
 export function getParsedErrors() {
-  const parsedErrors: Array<ITableError> = [];
+  const parsedErrors: IParsedError[] = [];
 
-  RANDOM_ERRORS_MOCK.forEach((error) => {
-    const parser: IErrorParser = ErrorParsersFactory.createParser(error.type);
+  RANDOM_ERRORS_MOCK.forEach((error: IError) => {
+    const parser: IErrorParser = ErrorParsersFactory.createParser(error);
 
-    const parsedError: string = parser.parse(error);
+    const parsedError: IParsedError = parser.parse(error);
 
-    return parsedErrors.push({'Error Type': error.type ?? '', 'Parsed Error': parsedError});
+    return parsedErrors.push(parsedError);
   });
 
   return parsedErrors;
 }
 
-console.table(getParsedErrors(), ['Error Type', 'Parsed Error']);
+export function getFormattedTableData() {
+  return getParsedErrors().map((parsedError: IParsedError) => ({
+    'Error Type': parsedError.type,
+    'Parsed Error': parsedError.formattedErrorMessage,
+  }));
+}
+
+console.table(getFormattedTableData(), ['Error Type', 'Parsed Error']);
