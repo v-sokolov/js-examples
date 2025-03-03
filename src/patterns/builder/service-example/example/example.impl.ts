@@ -1,18 +1,19 @@
 import {NetworkLayer} from '../network-layer/network-layer.impl';
-import {INetworkServiceDirector} from "./interfaces";
+import {INetworkServiceDirector} from "../contracts";
 
 class NetworkServiceDirector implements INetworkServiceDirector {
   getWebNetworkService() {
-    const initEditingHistory = [{name: 'web init'}, {
-      name: 'updating defaults',
-      options: {}
-    }, {name: 'web ready status'}];
+    const initEditingHistory = [
+      {name: 'web init'},
+      {name: 'updating defaults', options: {}},
+      {name: 'web ready status'}
+    ];
     const initInvoices = [{title: 'Bank Invoice', amount: 100, currency: 'EUR'}];
 
     return new NetworkLayer()
       .createEditingService(initEditingHistory)
       .createPaymentService(initInvoices)
-      .service;
+      .build();
   }
 
   getMobileNetworkService() {
@@ -22,13 +23,13 @@ class NetworkServiceDirector implements INetworkServiceDirector {
     return new NetworkLayer()
       .createEditingService(initEditingHistory)
       .createPaymentService(initInvoices)
-      .service;
+      .build();
   }
 
   getBackOfficeNetworkService() {
     return new NetworkLayer()
       .createUserService()
-      .service;
+      .build();
   }
 }
 

@@ -1,12 +1,4 @@
-interface Invoice {
-  title: string;
-  amount: number;
-  currency: string;
-}
-
-interface IPaymentService {
-  getInvoices(): Invoice[];
-}
+import {Invoice, IPaymentService} from "../contracts";
 
 export class PaymentService implements IPaymentService {
   private readonly invoices: Invoice[] = [];

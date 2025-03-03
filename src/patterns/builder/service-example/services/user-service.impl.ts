@@ -1,12 +1,4 @@
-interface User {
-  name: string;
-  email: string;
-  role: string;
-}
-
-interface IUserService {
-  getUser(email: string): User | undefined;
-}
+import {IUserService, User} from "../contracts";
 
 export class UserService implements IUserService {
   private readonly users: User[];

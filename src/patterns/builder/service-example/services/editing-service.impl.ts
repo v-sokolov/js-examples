@@ -1,11 +1,4 @@
-type EditingHistory = Array<{
-  name: string;
-  options?: unknown;
-}>;
-
-interface IEditingService {
-  getEditingHistory(): EditingHistory;
-}
+import {EditingHistory, IEditingService} from "../contracts";
 
 export class EditingService implements IEditingService {
   private readonly editingHistory: EditingHistory = [];
