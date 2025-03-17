@@ -1,12 +1,20 @@
+import {EditingHistory, IEditingService, Invoice, IPaymentService, IUserService} from "./services";
 import {INetworkLayer} from "./network";
-import {EditingHistory, Invoice} from "./services";
 
-export interface Builder {
-  build(): INetworkLayer;
+type WithService<T, K extends keyof INetworkLayer, V> = Builder<T & { [P in K]: V }>;
 
-  createUserService(): Builder;
+export type WithUserService<Added> = WithService<Added, "userService", IUserService>;
 
-  createEditingService(history?: EditingHistory): Builder;
+export type WithEditingService<Added> = WithService<Added, "editingService", IEditingService>;
 
-  createPaymentService(invoices?: Invoice[]): Builder;
+export type WithPaymentService<Added> = WithService<Added, "paymentService", IPaymentService>;
+
+export interface Builder<Added extends INetworkLayer = {}> {
+  build(): Added;
+
+  createUserService(): WithUserService<Added>;
+
+  createEditingService(history: EditingHistory): WithEditingService<Added>;
+
+  createPaymentService(invoices: Invoice[]): WithPaymentService<Added>;
 }
