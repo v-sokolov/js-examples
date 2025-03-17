@@ -9,6 +9,7 @@
   "scripts": {
     "run-strategy-pattern-example": "ts-node ./src/patterns/strategy/discount-example/example/example.exec.ts",
     "run-flyweight-pattern-example": "ts-node ./src/patterns/flyweight/avatar-example/example/example.exec.ts",
-    "run-factory-pattern-example": "ts-node ./src/patterns/factory/error-parser-example/example/example.exec.ts"
+    "run-factory-pattern-example": "ts-node ./src/patterns/factory/error-parser-example/example/example.exec.ts",
+    "run-builder-pattern-example": "ts-node ./src/patterns/builder/service-example/example/example.exec.ts"
   }
 }
