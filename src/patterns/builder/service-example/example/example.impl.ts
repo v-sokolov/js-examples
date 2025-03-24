@@ -10,7 +10,7 @@ class NetworkServiceDirector implements INetworkServiceDirector {
     ];
     const initInvoices = [{title: 'Bank Invoice', amount: 100, currency: 'EUR'}];
 
-    return new NetworkLayer({})
+    return new NetworkLayer()
       .createEditingService(initEditingHistory)
       .createPaymentService(initInvoices)
       .build();
@@ -20,7 +20,7 @@ class NetworkServiceDirector implements INetworkServiceDirector {
     const initEditingHistory = [{name: 'mobile init'}, {name: 'mobile ready status'}];
     const initInvoices = [{title: 'ApplePay Invoice', amount: 50, currency: 'USD'}];
 
-    return new NetworkLayer({})
+    return new NetworkLayer()
       .createEditingService(initEditingHistory)
       .createPaymentService(initInvoices)
       .build();

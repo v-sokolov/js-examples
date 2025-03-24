@@ -17,7 +17,7 @@ console.log('Mobile', {
 console.log('BackOffice WEB', {
   adminUser: backOfficeNetworkService.userService.getUser('admin@gmail.com'),
   // 'TS2339: Property editingService does not exist on type { userService: UserService; }',
-  editingHistory: backOfficeNetworkService.editingService?.getEditingHistory(),
+  // editingHistory: backOfficeNetworkService.editingService?.getEditingHistory(),
   // 'TS2339: Property paymentService does not exist on type { userService: UserService; }',
-  invoices: backOfficeNetworkService.paymentService?.getInvoices(),
+  // invoices: backOfficeNetworkService.paymentService?.getInvoices(),
 });
